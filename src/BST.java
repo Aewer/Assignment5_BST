@@ -17,6 +17,7 @@ public class BST<K extends Comparable<K>, V> {
         root = put(root, key, value);
     }
     private Node<K, V> put(Node<K, V> current, K key, V value) {
+        size++;
         if (current == null) {
             return new Node<>(key, value);
         }
@@ -42,6 +43,7 @@ public class BST<K extends Comparable<K>, V> {
     }
     public void delete(K key) {
         root = delete(root, key);
+        size--;
     }
     private Node<K, V> delete(Node<K, V> current, K key){
         if(current == null)
