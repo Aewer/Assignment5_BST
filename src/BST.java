@@ -72,8 +72,17 @@ public class BST<K extends Comparable<K>, V> {
         }
         return current;
     }
-
     private K findSmallestValue(Node<K, V> root){
         return root.left == null ? root.key : findSmallestValue(root.left);
+    }
+    private void inOrder(Node<K, V> node){
+        if(node !=null){
+            inOrder(node.left);
+            System.out.print(node.key + " ");
+            inOrder(node.right);
+        }
+    }
+    public void inOrder(){
+        inOrder(root);
     }
 }
