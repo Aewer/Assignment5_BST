@@ -1,10 +1,10 @@
 public class BST<K extends Comparable<K>, V> {
     private int size = 0;
-    private Node root;
-    private class Node {
+    private Node<K, V> root;
+    private class Node<K, V> {
         private K key;
         private V val;
-        private Node left, right;
+        private Node<K, V> left, right;
         public Node(K key, V val) {
             this.key = key;
             this.val = val;
@@ -16,9 +16,9 @@ public class BST<K extends Comparable<K>, V> {
     public void put(K key, V value) {
         root = put(root, key, value);
     }
-    public Node put(Node current, K key, V value) {
+    private Node<K, V> put(Node<K, V> current, K key, V value) {
         if (current == null) {
-            return new Node(key, value);
+            return new Node<>(key, value);
         }
         if(key.compareTo(current.key) < 0) {
             current.left = put(current.left, key, value);
@@ -26,5 +26,18 @@ public class BST<K extends Comparable<K>, V> {
             current.right = put(current.right, key, value);
         }
         return current;
+    }
+    public V get (K key) {
+        return get(root, key).val;
+    }
+    private Node<K, V> get(Node<K, V> current, K key) {
+        if (current == null || current.key == key) {
+            return current;
+        }
+        if (key.compareTo(current.key) > 0) {
+            return get(current.right, key);
+        } else {
+            return get(current.left, key);
+        }
     }
 }
