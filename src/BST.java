@@ -1,4 +1,5 @@
 public class BST<K extends Comparable<K>, V> {
+    private int size = 0;
     private Node root;
     private class Node {
         private K key;
@@ -8,5 +9,8 @@ public class BST<K extends Comparable<K>, V> {
             this.key = key;
             this.val = val;
         }
+    }
+    public int size() {
+        return size;
     }
 }
