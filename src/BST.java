@@ -85,4 +85,19 @@ public class BST<K extends Comparable<K>, V> {
     public void inOrder(){
         inOrder(root);
     }
+    private boolean contains(Node<K, V> current, K key) {
+        if (current == null) {
+            return false;
+        } else if (current.key == key) {
+            return true;
+        } else if (key.compareTo(current.key) > 0) {
+            return contains(current.right, key);
+        } else {
+            return contains(current.left, key);
+        }
+    }
+    public boolean contains(K key) {
+        return contains(root, key);
+    }
 }
+// implement contains method (public and private) using recursion
